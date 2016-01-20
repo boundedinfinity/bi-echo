@@ -1,0 +1,47 @@
+hash: 100c7fedd75bfd7d88085bd6ba56912ac41b837409315b56e08ad3847c0c2bc3
+updated: 2016-01-19T16:50:10.797211878-07:00
+imports:
+- name: github.com/agtorre/gocolorize
+  version: f42b554bf7f006936130c9bb4f971afd2d87f671
+  repo: https://github.com/agtorre/gocolorize
+- name: github.com/bradfitz/gomemcache
+  version: fb1f79c6b65acda83063cbc69f6bba1522558bfc
+  repo: https://github.com/bradfitz/gomemcache
+- name: github.com/garyburd/redigo
+  version: 836b6e58b3358112c8291565d01c35b8764070d7
+  repo: https://github.com/garyburd/redigo
+- name: github.com/revel/cmd
+  version: a7b72c9afbff471c8c6c579f3b63780d2c478b12
+  subpackages:
+  - /revel
+- name: github.com/revel/modules
+  version: 3589d5bf1d1b6da10a88c53701db2af12dfc0811
+  repo: https://github.com/revel/modules
+- name: github.com/revel/revel
+  version: a9a2ff45fae4330ef4116b257bcf9c82e53350c2
+  repo: https://github.com/revel/revel
+- name: github.com/robfig/config
+  version: 0f78529c8c7e3e9a25f15876532ecbc07c7d99e6
+  repo: https://github.com/robfig/config
+- name: github.com/robfig/cron
+  version: 32d9c273155a0506d27cf73dd1246e86a470997e
+  repo: https://github.com/robfig/cron
+- name: github.com/robfig/go-cache
+  version: 9fc39e0dbf62c034ec4e45e6120fc69433a3ec51
+  repo: https://github.com/robfig/go-cache
+- name: github.com/robfig/pathtree
+  version: 41257a1839e945fce74afd070e02bab2ea2c776a
+  repo: https://github.com/robfig/pathtree
+- name: golang.org/x/crypto
+  version: 3760e016850398b85094c4c99e955b8c3dea5711
+  repo: https://golang.org/x/crypto
+- name: golang.org/x/net
+  version: 72aa00c6241a8013dc9b040abb45f57edbe73945
+  repo: https://golang.org/x/net
+- name: golang.org/x/text
+  version: cf4986612c83df6c55578ba198316d1684a9a287
+  repo: https://golang.org/x/text
+- name: gopkg.in/fsnotify.v1
+  version: 8611c35ab31c1c28aa903d33cf8b6e44a399b09e
+  repo: https://gopkg.in/fsnotify.v1
+devImports: []

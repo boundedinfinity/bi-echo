@@ -1,0 +1,5 @@
+package: .
+import:
+- package: github.com/revel/cmd
+  subpackages:
+  - /revel
