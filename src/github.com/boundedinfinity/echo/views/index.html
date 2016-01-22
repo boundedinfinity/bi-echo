@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Echo Server</title>
+        <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <script src="/static/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+        <link rel="import" href="/static/elements.html">
+    </head>
+
+    <body unresolved fullbleed>
+        <template is="dom-bind" id="app">
+            <header><h2>Echo Server</h2></header>
+            <main>
+                <article>
+                    <form is="iron-form" id="form" method="post" action="/">
+                        <paper-input id="id" name="id" label="Channel name"></paper-input>
+                        <paper-button raised onclick="submitForm()">Submit</paper-button>
+                    </form>
+                </article>
+                <nav></nav>
+                <aside></aside>
+            </main>
+            <footer></footer>
+        </template>
+        <script src="/static/js/app.js"></script>
+    </body>
+</html>
