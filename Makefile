@@ -4,13 +4,14 @@ docker_ver   := 1.0
 docker_tag   := $(docker_group)/$(docker_image):$(docker_ver)
 app_dir := /app
 
-go_package := github.com/boundedinfinity/echo
-glide_pkg ?= none
-
 make_dir := $(abspath $(shell pwd))
 export GOPATH := $(make_dir)
 export GO15VENDOREXPERIMENT := 1
 export PATH := $(GOPATH)/bin:$(PATH)
+
+go_package := github.com/boundedinfinity/echo
+glide_pkg ?= none
+beego_out_path ?= $(GOPATH)
 
 .PHONY: list docker-build docker-run docker-push go-install glide-install revel-run
 
@@ -47,7 +48,10 @@ go-package:
 	@echo $(go_package)
 
 go-install:
-	go install ./...
+	go install $(go_package)/...
 
 beego-run:
 	 cd $(GOPATH)/src/$(go_package) && bee run
+
+beego-package:
+	 cd $(GOPATH)/src/$(go_package) && bee pack -o $(beego_out_path)
