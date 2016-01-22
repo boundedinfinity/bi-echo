@@ -1,10 +1,14 @@
 docker_group := boundedinfinity
 docker_image := echo
-docker_ver   := 1.0
+docker_ver   := 1
 docker_tag   := $(docker_group)/$(docker_image):$(docker_ver)
-app_dir := /app
+docker_app_dir := /app
+docker_dist_dir := /dist
+docker_port ?= 9090
 
 make_dir := $(abspath $(shell pwd))
+dist_dir := $(make_dir)/dist
+
 export GOPATH := $(make_dir)
 export GO15VENDOREXPERIMENT := 1
 export PATH := $(GOPATH)/bin:$(PATH)
@@ -33,13 +37,13 @@ docker-bash:
 docker-push:
 	docker push $(docker_tag)
 
-bootstrap: glide-install go-install
+docker-daemon:
+	docker run -d -p 8080:$(docker_port) $(docker_tag) 
 
 clean:
 	go clean
 	rm -rf $(GOPATH)/bin
 	rm -rf $(GOPATH)/pkg
-	rm -rf $(GOPATH)/src/$(go_package)/vendor
 
 go-path:
 	@echo $(GOPATH)
@@ -49,6 +53,12 @@ go-package:
 
 go-install:
 	go install $(go_package)/...
+
+go-dist:
+	rm -rf $(dist_dir)
+	mkdir -p $(dist_dir)
+	docker run --rm -v $(dist_dir):$(docker_dist_dir) $(docker_tag) \
+        bash -c 'make beego-package beego_out_path=$(docker_dist_dir)'
 
 beego-run:
 	 cd $(GOPATH)/src/$(go_package) && bee run

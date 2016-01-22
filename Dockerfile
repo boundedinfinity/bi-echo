@@ -1,15 +1,20 @@
-FROM golang:1.5.2
+FROM boundedinfinity/go-glide:1
 MAINTAINER brad.babb@boundedinfinity.com
 
-ENV GLIDE_ARCHIVE=glide-0.8.3-linux-amd64.tar.gz
-ENV GLIDE_URL=https://github.com/Masterminds/glide/releases/download/0.8.3/glide-0.8.3-linux-amd64.tar.gz
-ENV GLIDE_DIR=/tmp/glide
-ENV GO15VENDOREXPERIMENT=1
+ENV APP_DIR=/app
+ENV DIST_DIR=/dist
 
-RUN apt-get update && apt-get install -y git
+WORKDIR $APP_DIR
+RUN mkdir -p $APP_DIR && mkdir -p $DIST_DIR
 
-RUN mkdir -p $GLIDE_DIR && \
-    wget -q -O $GLIDE_DIR/$GLIDE_ARCHIVE $GLIDE_URL && \
-    tar -xf $GLIDE_DIR/$GLIDE_ARCHIVE -C $GLIDE_DIR && \
-    mv $GLIDE_DIR/linux-amd64/glide $(dirname $(which go))/glide && \
-    rm -rf $GLIDE_DIR
+COPY . $APP_DIR
+
+RUN go get github.com/astaxie/beego && \
+    go get github.com/beego/bee && \
+    go get github.com/gorilla/websocket
+
+RUN make go-install
+
+EXPOSE 8080
+
+CMD ["/app/bin/echo"]

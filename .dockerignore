@@ -1,0 +1,7 @@
+.git/
+bin/
+pkg/
+dist/
+Dockerfile
+Brewfile
+bower.json
