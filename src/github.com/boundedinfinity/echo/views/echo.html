@@ -16,7 +16,7 @@
         <template is="dom-bind" id="app">
             <header>
                 <h2>Echoing channel {{.Channel}}</h2>
-                <p>URL: /localhost:8080/rest/{{.Channel}}</p>
+                <p>URL: <span id="restUrl"></span></p>
             </header>
             <main>
                 <article>

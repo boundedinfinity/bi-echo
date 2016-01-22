@@ -8,7 +8,6 @@ var items = [];
         console.log("channel: " + channel);
         socket = new WebSocket('ws://' + window.location.host + '/ws/' + channel);
 
-
         socket.onmessage = function (event) {
             var data = JSON.parse(event.data);
 
@@ -28,7 +27,12 @@ var items = [];
         var grid = document.getElementById('grid');
         grid.columns[2].renderer = jsonRenderer;
         grid.items = items;
-        $("#count").text(0);
+
+        setTimeout(function(){
+            $("#count").text(0);
+            $("#restUrl").text("http://" + window.location.host + '/rest/' + channel)
+        }, 100);
+
     });
 
 })(document);
