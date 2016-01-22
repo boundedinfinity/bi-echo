@@ -1,0 +1,55 @@
+{
+	"id": "2f4ec584-03bb-f2b1-af14-f55cc5b2e1fc",
+	"name": "echo",
+	"description": "",
+	"order": [
+		"e0a7640e-0fd2-53c3-5424-16839570dc51",
+		"0aaa4877-b011-613d-a6a6-1a14da71c9ba"
+	],
+	"folders": [],
+	"timestamp": 1453417849768,
+	"owner": 0,
+	"remoteLink": "",
+	"public": false,
+	"requests": [
+		{
+			"id": "0aaa4877-b011-613d-a6a6-1a14da71c9ba",
+			"headers": "Content-Type: application/json\n",
+			"url": "localhost:8080/rest/ccc",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "GET",
+			"data": [],
+			"dataMode": "params",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1453417935603,
+			"name": "GET",
+			"description": "",
+			"collectionId": "2f4ec584-03bb-f2b1-af14-f55cc5b2e1fc",
+			"responses": []
+		},
+		{
+			"id": "e0a7640e-0fd2-53c3-5424-16839570dc51",
+			"headers": "Content-Type: application/json\n",
+			"url": "localhost:8080/rest/ccc",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1453419010134,
+			"name": "POST",
+			"description": "",
+			"collectionId": "2f4ec584-03bb-f2b1-af14-f55cc5b2e1fc",
+			"responses": [],
+			"rawModeData": "{\n    \"a\": \"John Smith\",\n    \"b\": \"John Smith\",\n    \"c\": \"John Smith\",\n    \"d\": \"John Smith\",\n    \"e\": \"John Smith\"\n}"
+		}
+	]
+}
