@@ -31,6 +31,9 @@ docker-tag:
 docker-build:
 	docker build --tag $(docker_tag) .
 
+docker-build-clean:
+	docker build --no-cache --force-rm --tag $(docker_tag) .
+
 docker-bash:
 	docker run -it --rm $(docker_tag) bash
 
@@ -38,7 +41,7 @@ docker-push:
 	docker push $(docker_tag)
 
 docker-daemon:
-	docker run -d -p 8080:$(docker_port) $(docker_tag) 
+	docker run -d -p 8080:$(docker_port) $(docker_tag)
 
 clean:
 	go clean
@@ -53,6 +56,11 @@ go-package:
 
 go-install:
 	go install $(go_package)/...
+
+go-bootstrap:
+	go get github.com/astaxie/beego
+	go get github.com/beego/bee
+	go get github.com/gorilla/websocket
 
 go-dist:
 	rm -rf $(dist_dir)
