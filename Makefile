@@ -41,12 +41,13 @@ docker-push:
 	docker push $(docker_tag)
 
 docker-daemon:
-	docker run -d -p 8080:$(docker_port) $(docker_tag)
+	docker run -d -p $(docker_port):8080 $(docker_tag)
 
 clean:
 	go clean
 	rm -rf $(GOPATH)/bin
 	rm -rf $(GOPATH)/pkg
+	git clean -dxff $(make_dir)/src
 
 go-path:
 	@echo $(GOPATH)
