@@ -49,6 +49,12 @@ clean:
 	rm -rf $(GOPATH)/pkg
 	git clean -dxff $(make_dir)/src
 
+go-env-fish:
+	@echo 'set -gx GOPATH $(GOPATH); set -gx PATH $$GOPATH/bin $$PATH'
+
+go-env-bash:
+	@echo 'export GOPATH=$(GOPATH); export PATH=$$GOPATH/bin:$$PATH'
+
 go-path:
 	@echo $(GOPATH)
 
@@ -62,6 +68,7 @@ go-bootstrap:
 	go get github.com/astaxie/beego
 	go get github.com/beego/bee
 	go get github.com/gorilla/websocket
+	go get -u github.com/jteeuwen/go-bindata/...
 
 go-dist:
 	rm -rf $(dist_dir)
