@@ -5,14 +5,19 @@ ENV APP_DIR=/app
 ENV DIST_DIR=/dist
 ENV GOPATH=$APP_DIR
 
-WORKDIR $APP_DIR
 RUN mkdir -p $APP_DIR && mkdir -p $DIST_DIR
 
 COPY . $APP_DIR
 
-RUN make go-bootstrap
-RUN make go-install
+RUN cd $APP_DIR && \
+    make go-bootstrap && \
+    make go-install && \
+    make beego-package docker_dist_dir=$DIST_DIR && \
+    cd $DIST_DIR && \
+    tar zxvf echo.tar.gz && \
+    rm -rf echo.tar.gz
 
 EXPOSE 8080
 
-CMD ["/app/bin/echo"]
+WORKDIR $DIST_DIR
+CMD ["./echo"]
