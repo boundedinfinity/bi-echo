@@ -6,6 +6,7 @@ import (
     "net/http"
     "time"
     "io/ioutil"
+    "fmt"
 )
 
 type RestController struct {
@@ -25,6 +26,8 @@ func handle(c *RestController, method string) {
     } else {
         if(ChannelExists(channel)) {
             body, err := ioutil.ReadAll(c.Ctx.Request.Body)
+
+            beego.Info(fmt.Sprintf("body: %s", body))
 
             if err != nil {
                 c.Ctx.Output.SetStatus(http.StatusInternalServerError)

@@ -1,8 +1,10 @@
 var socket;
 var items = [];
+var detailsOpenIndex = -1;
 
 (function(document) {
     'use strict';
+
 
     window.addEventListener('WebComponentsReady', function() {
         console.log("channel: " + channel);
@@ -27,6 +29,31 @@ var items = [];
         var grid = document.getElementById('grid');
         grid.columns[2].renderer = jsonRenderer;
         grid.items = items;
+
+        grid.rowDetailsGenerator = function(rowIndex) {
+            var elem = document.createElement('code');
+            
+            grid.getItem(rowIndex, function(error, item) {
+                if(error) {
+                    alert('error: ' + error);
+                } else {
+                    var json = JSON.parse(item.body);
+                    elem.innerHTML = JSON.stringify(json, null, 4);
+                }
+            });
+            
+            return elem;
+        };
+
+        grid.addEventListener('selected-items-changed', function() {
+            grid.setRowDetailsVisible(detailsOpenIndex, false);
+            var selected = grid.selection.selected();
+
+            if (selected.length == 1) {
+                grid.setRowDetailsVisible(selected[0], true);
+                detailsOpenIndex = selected[0];
+            }
+        });
 
         setTimeout(function(){
             $("#count").text(0);
