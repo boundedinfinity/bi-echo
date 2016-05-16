@@ -1,17 +1,17 @@
-docker_group := boundedinfinity
-docker_image := echo
-docker_ver   := 1
-docker_tag   := $(docker_group)/$(docker_image):$(docker_ver)
-docker_app_dir := /app
+docker_group 	:= boundedinfinity
+docker_image 	:= echo
+docker_ver   	:= 1
+docker_tag   	:= $(docker_group)/$(docker_image):$(docker_ver)
+docker_app_dir	:= /app
 docker_dist_dir ?= /dist
-docker_port ?= 9090
+docker_port 	?= 9090
 
-make_dir := $(abspath $(shell pwd))
-dist_dir := $(make_dir)/dist
+make_dir 		:= $(abspath $(shell pwd))
+dist_dir 		:= $(make_dir)/dist
 
-export GOPATH := $(make_dir)
+export GOPATH 	:= $(make_dir)
 export GO15VENDOREXPERIMENT := 1
-export PATH := $(GOPATH)/bin:$(PATH)
+export PATH 	:= $(GOPATH)/bin:$(PATH)
 
 go_package := github.com/boundedinfinity/echo
 glide_pkg ?= none

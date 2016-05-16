@@ -1,4 +1,4 @@
-FROM boundedinfinity/go-glide:1
+FROM boundedinfinity/go-glide:1.0.0
 MAINTAINER brad.babb@boundedinfinity.com
 
 ENV APP_DIR=/app
