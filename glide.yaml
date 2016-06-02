@@ -1,0 +1,16 @@
+package: github.com/boundedinfinity/echo
+import:
+- package: github.com/labstack/echo
+  subpackages:
+  - '...'
+- package: github.com/gorilla/websocket
+- package: github.com/jteeuwen/go-bindata
+  subpackages:
+  - '...'
+- package: github.com/elazarl/go-bindata-assetfs
+  subpackages:
+  - '...'
+- package: github.com/labstack/gommon
+  subpackages:
+  - log
+- package: github.com/dgrijalva/jwt-go

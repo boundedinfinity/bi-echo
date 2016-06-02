@@ -1,85 +1,35 @@
-docker_group 	:= boundedinfinity
-docker_image 	:= echo
-docker_ver   	:= 1
-docker_tag   	:= $(docker_group)/$(docker_image):$(docker_ver)
-docker_app_dir	:= /app
-docker_dist_dir ?= /dist
-docker_port 	?= 9090
+makefile_dir := $(abspath $(shell pwd))
 
-make_dir 		:= $(abspath $(shell pwd))
-dist_dir 		:= $(make_dir)/dist
+docker_group := boundedinfinity
+docker_image := echo
+docker_ver   := 1.0.0
+docker_tag   := $(docker_group)/$(docker_image):$(docker_ver)
+docker_src   := /app
+docker_port  := 8080
 
-export GOPATH 	:= $(make_dir)
-export GO15VENDOREXPERIMENT := 1
-export PATH 	:= $(GOPATH)/bin:$(PATH)
-
-go_package := github.com/boundedinfinity/echo
-glide_pkg ?= none
-
-
-.PHONY: list docker-build docker-run docker-push go-install glide-install revel-run
+.PHONY: list
 
 list:
 	@grep '^[^#[:space:]].*:' Makefile | grep -v ':=' | grep -v '^\.' | sed 's/:.*//g' | sed 's/://g' | sort
 
-bin-path:
-	@echo $(PATH)
+bootstrap:
+	glide install
+	go get github.com/jteeuwen/go-bindata/...
+	go get github.com/elazarl/go-bindata-assetfs/...
 
-docker-tag:
-	@echo $(docker_tag)
+bindata-assetfs-clean:
+	rm -f $(makefile_dir)/bindata_assetfs.go
 
-docker-build:
-	docker build --tag $(docker_tag) .
+bindata-assetfs:
+	go-bindata-assetfs html/
 
-docker-build-clean:
-	docker build --no-cache --force-rm --tag $(docker_tag) .
+bindata-clean:
+	rm -f $(makefile_dir)/bindata.go
 
-docker-bash:
-	docker run -it -p $(docker_port):8080 --rm $(docker_tag) bash
+bindata:
+	go-bindata html/
 
-docker-push:
-	docker push $(docker_tag)
-
-docker-daemon:
-	docker run -d -p $(docker_port):8080 $(docker_tag)
-
-docker-go-dist:
-	rm -rf $(dist_dir)
-	mkdir -p $(dist_dir)
-	docker run --rm -v $(dist_dir):$(docker_dist_dir) $(docker_tag) \
-		bash -c 'make beego-package beego_out_path=$(docker_dist_dir)'
-
-clean:
-	go clean
-	rm -rf $(GOPATH)/bin
-	rm -rf $(GOPATH)/pkg
-	git clean -dxff $(make_dir)/src
-
-go-env-fish:
-	@echo 'set -gx GOPATH $(GOPATH); set -gx PATH $$GOPATH/bin $$PATH'
-
-go-env-bash:
-	@echo 'export GOPATH=$(GOPATH); export PATH=$$GOPATH/bin:$$PATH'
-
-go-path:
-	@echo $(GOPATH)
-
-go-package:
-	@echo $(go_package)
-
-go-install:
-	go install $(go_package)/...
-
-go-bootstrap:
-	go get github.com/astaxie/beego
-	go get github.com/beego/bee
-	go get github.com/gorilla/websocket
-
-go-dist:
-	echo Test
-
-beego-run:
-	 cd $(GOPATH)/src/$(go_package) && bee run
-
-beego-package:
-	 cd $(GOPATH)/src/$(go_package) && bee pack -o $(docker_dist_dir)
+echo-run:
+	go generate
+	go build
+	$(makefile_dir)/echo
