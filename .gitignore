@@ -1,2 +1,4 @@
 vendor/
 .idea/
+bindata_assetfs.go
+echo
