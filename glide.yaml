@@ -14,3 +14,4 @@ import:
   subpackages:
   - log
 - package: github.com/dgrijalva/jwt-go
+- package: github.com/Sirupsen/logrus

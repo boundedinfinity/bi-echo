@@ -10,6 +10,8 @@ import (
     "github.com/labstack/echo/middleware"
     "html/template"
     "io"
+    log "github.com/Sirupsen/logrus"
+    "os"
 )
 
 type Config struct {
@@ -47,12 +49,16 @@ func RenderStatic (c echo.Context) error {
 }
 
 func main() {
+    log.SetFormatter(&log.JSONFormatter{})
+    log.SetOutput(os.Stdout)
+    log.SetLevel(log.InfoLevel)
+
     config := Config{
         Port: 8080,
     }
 
     e := echo.New()
-    e.Use(middleware.Logger())
+    //e.Use(middleware.Logger())
     e.Use(middleware.Recover())
     e.SetRenderer(&EchoRenderer{})
 
@@ -60,11 +66,8 @@ func main() {
         return c.Render(http.StatusOK, "view/index.html", "")
     })
 
-    e.GET("/test", func(c echo.Context) error {
-        return c.Render(http.StatusOK, "view/test.html", "")
-    })
-
     e.GET("/static*", RenderStatic)
 
+    log.Info(config)
     e.Run(standard.New(fmt.Sprintf(":%d", config.Port)))
 }
