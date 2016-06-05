@@ -5,7 +5,6 @@ var detailsOpenIndex = -1;
 (function(document) {
     'use strict';
 
-
     window.addEventListener('WebComponentsReady', function() {
         console.log("channel: " + channel);
         socket = new WebSocket('ws://' + window.location.host + '/ws/' + channel);

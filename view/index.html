@@ -13,12 +13,15 @@
         <template is="dom-bind" id="app">
             <header><h2>Echo Server</h2></header>
             <main>
-                <article>
-                    <form is="iron-form" id="form" method="post" action="/">
+                <paper-card heading="New Channel">
+                    <div class="card-content">
                         <paper-input id="id" name="id" label="Channel name"></paper-input>
+                    </div>
+                    <div class="card-actions">
                         <paper-button raised onclick="submitForm()">Submit</paper-button>
-                    </form>
-                </article>
+                    </div>
+                </paper-card>
+
                 <nav></nav>
                 <aside></aside>
             </main>

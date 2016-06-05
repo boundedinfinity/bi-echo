@@ -29,6 +29,11 @@ bindata-clean:
 bindata:
 	go-bindata html/
 
+echo-debug:
+	go-bindata-assetfs -debug -ignore=\\.gitignore view/... static/...
+	go build
+	$(makefile_dir)/echo
+
 echo-run:
 	go generate
 	go build
