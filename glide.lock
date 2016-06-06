@@ -1,5 +1,5 @@
-hash: b4094d0236295b475191ffabd827a8a45022686c36f5d80955dac52416402c1f
-updated: 2016-06-02T17:25:26.293466805-06:00
+hash: 3e9096e61a48804dbf35035e99ad0116b1c00d53caaf27b5d6cdc9ac4f56c598
+updated: 2016-06-05T21:31:04.74179423-06:00
 imports:
 - name: github.com/dgrijalva/jwt-go
   version: 9b486c879bab3fde556ce8c27d9a2bb05d5b2c60
@@ -14,7 +14,7 @@ imports:
   subpackages:
   - '...'
 - name: github.com/labstack/echo
-  version: ad06aee0c17b90b73e2013956aa762973f0afea6
+  version: acc91b28f36e51fb0211be6e40691442a2c0ef27
   subpackages:
   - '...'
   - engine/standard
@@ -35,10 +35,6 @@ imports:
   version: f3cfb454f4c209e6668c95216c4744b8fddb2356
 - name: github.com/valyala/fasttemplate
   version: 3b874956e03f1636d171bda64b130f9135f42cff
-- name: golang.org/x/net
-  version: c4c3ea71919de159c9e246d7be66deb7f0a39a58
-  subpackages:
-  - context
 - name: golang.org/x/sys
   version: 076b546753157f758b316e59bcb51e6807c04057
   subpackages:
