@@ -1,5 +1,12 @@
 package main
 
+//
+// Reference
+//
+// https://github.com/Sirupsen/logrus
+//
+//
+
 //go:generate go-bindata-assetfs -ignore=\\.gitignore view/... static/...
 
 import (

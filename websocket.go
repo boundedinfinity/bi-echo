@@ -1,20 +1,61 @@
 package main
 
+//
+// Reference
+//
+// https://echo.labstack.com/recipes/websocket
+//
+//
+
 import (
     "github.com/labstack/echo"
     "github.com/gorilla/websocket"
     "container/list"
     "time"
     "encoding/json"
+    "net/http"
+    "fmt"
+    "github.com/labstack/echo/engine/standard"
+    log "github.com/Sirupsen/logrus"
 )
 
 func InitializeWebsocket(e *echo.Echo) error {
 
-
+    e.GET("/ws", standard.WrapHandler(http.HandlerFunc(ws())))
 
     return nil
 }
 
+var (
+    upgrader = websocket.Upgrader{}
+)
+
+func ws() http.HandlerFunc {
+    return func(w http.ResponseWriter, r *http.Request) {
+        c, err := upgrader.Upgrade(w, r, nil)
+
+        if err != nil {
+            log.Print("upgrade:", err)
+            return
+        }
+        defer c.Close()
+
+        for {
+            // Write
+            err := c.WriteMessage(websocket.TextMessage, []byte("Hello, Client!"))
+            if err != nil {
+                log.Fatal(err)
+            }
+
+            // Read
+            _, msg, err := c.ReadMessage()
+            if err != nil {
+                log.Fatal(err)
+            }
+            fmt.Printf("%s\n", msg)
+        }
+    }
+}
 
 type EventType int
 
