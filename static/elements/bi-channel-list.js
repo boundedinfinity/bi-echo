@@ -1,15 +1,17 @@
 Polymer({
     is: 'bi-channel-list',
-    properties: {
-        properties: {
 
-        },
+    data: [],
 
-        ready: function() {
-        },
+    ready: function() {
+        this.$.grid.items = this.data;
+        console.log("bi-channel-list ready");
+    },
 
-        onError: function(error) {
-            this.fire('onerror', error);
-        }
+    addItem: function(item) {
+        console.log("bi-channel-list.addItem");
+        this.data.push(item);
+        this.$.grid.size = data.length;
+        this.refreshItems();
     }
 });

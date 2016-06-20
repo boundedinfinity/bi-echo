@@ -7,11 +7,13 @@ Polymer({
         }
     },
 
-    ready: function() { },
+    ready: function() {
+        console.log("bi-channel-input ready");
+    },
 
     handleTap: function() {
         if(this.channelName) {
-            this.displayMessage("channel name is " + this.channelName);
+            this.fire('item', { name: this.channelName} );
         } else {
             this.displayMessage("channel cannot be empty");
         }

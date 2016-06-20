@@ -1,4 +1,5 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/vaadin-grid/vaadin-grid.html">
 
 <dom-module id="bi-channel-list">
     <style>
@@ -9,7 +10,21 @@
 	</style>
 
     <template>
+        <vaadin-grid id="grid">
+            <table>
+                <!-- Define the columns and their mapping to data properties. -->
+                <col name="channel">
+                <col name="count">
 
+                <!-- Define the column headings. -->
+                <thead>
+                <tr>
+                    <th>Channel</th>
+                    <th>Count</th>
+                </tr>
+                </thead>
+            </table>
+        </vaadin-grid>
     </template>
 
     <script src="bi-channel-list.js"></script>
