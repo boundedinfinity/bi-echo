@@ -21,7 +21,7 @@ import (
 
 func InitializeWebsocket(e *echo.Echo) error {
 
-    e.GET("/ws", standard.WrapHandler(http.HandlerFunc(ws())))
+    e.GET("/ws/:name", standard.WrapHandler(http.HandlerFunc(ws())))
 
     return nil
 }

@@ -11,23 +11,15 @@
 
     <body unresolved fullbleed>
         <template is="dom-bind" id="app">
-            <header><h2>Echo Server</h2></header>
+            <header><h2>REST Callback Echo Server</h2></header>
             <main>
-                <paper-card heading="New Channel">
-                    <div class="card-content">
-                        <paper-input id="id" name="id" label="Channel name"></paper-input>
-                    </div>
-                    <div class="card-actions">
-                        <paper-button raised onclick="submitForm()">Submit</paper-button>
-                    </div>
-                </paper-card>
+                <bi-channel-input></bi-channel-input>
 
                 <nav></nav>
                 <aside></aside>
             </main>
             <footer></footer>
         </template>
-        <bi-webscoket url="ws://localhost:8080" />
         <script src="/static/js/app.js"></script>
     </body>
 </html>

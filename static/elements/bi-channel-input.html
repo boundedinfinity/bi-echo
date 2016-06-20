@@ -1,0 +1,33 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-toast/paper-toast.html">
+
+<dom-module id="bi-channel-input">
+    <style>
+		:host {
+			display: inline-block;
+			width: 100%;
+		}
+		paper-card {
+            width: 100%;
+        }
+	</style>
+
+    <template>
+        <paper-toast id="toast"></paper-toast>
+
+        <paper-card heading="New Channel" >
+            <div class="card-content">
+                <paper-input value="{{channelName}}" label="<channel name>"></paper-input>
+            </div>
+            <div class="card-actions">
+                <paper-button raised on-tap="handleTap">Submit</paper-button>
+            </div>
+        </paper-card>
+
+    </template>
+
+    <script src="bi-channel-input.js"></script>
+</dom-module>
