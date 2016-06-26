@@ -7,24 +7,31 @@
 			display: inline-block;
 			width: 100%;
 		}
+		paper-card {
+            width: 100%;
+        }
 	</style>
 
     <template>
-        <vaadin-grid id="grid">
-            <table>
-                <!-- Define the columns and their mapping to data properties. -->
-                <col name="channel">
-                <col name="count">
+        <paper-card heading="Channel List">
+            <div class="card-content">
+                <vaadin-grid id="grid">
+                    <table>
+                        <!-- Define the columns and their mapping to data properties. -->
+                        <col name="name">
+                        <col name="url">
 
-                <!-- Define the column headings. -->
-                <thead>
-                <tr>
-                    <th>Channel</th>
-                    <th>Count</th>
-                </tr>
-                </thead>
-            </table>
-        </vaadin-grid>
+                        <!-- Define the column headings. -->
+                        <thead>
+                        <tr>
+                            <th>Channel</th>
+                            <th>URL</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </vaadin-grid>
+            </div>
+        </paper-card>
     </template>
 
     <script src="bi-channel-list.js"></script>

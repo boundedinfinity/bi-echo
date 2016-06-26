@@ -9,9 +9,9 @@ Polymer({
     },
 
     addItem: function(item) {
-        console.log("bi-channel-list.addItem");
+        //console.log("bi-channel-list.addItem" + JSON.stringify(item));
         this.data.push(item);
-        this.$.grid.size = data.length;
-        this.refreshItems();
+        this.$.grid.size = this.data.length;
+        this.$.grid.refreshItems();
     }
 });

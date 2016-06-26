@@ -13,9 +13,16 @@ Polymer({
 
     handleTap: function() {
         if(this.channelName) {
-            this.fire('item', { name: this.channelName} );
+            this.fire('item', this.createItem());
         } else {
             this.displayMessage("channel cannot be empty");
+        }
+    },
+
+    createItem: function() {
+        return {
+            name: this.channelName,
+            url: 'http://' + window.location.host + '/ws/' + this.channelName
         }
     },
 
