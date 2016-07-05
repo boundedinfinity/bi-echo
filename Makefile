@@ -7,6 +7,8 @@ docker_tag   := $(docker_group)/$(docker_image):$(docker_ver)
 docker_src   := /app
 docker_port  := 8080
 
+go_assetfile := $(makefile_dir)/bindata_assetfs.go
+
 .PHONY: list
 
 list:
@@ -18,6 +20,7 @@ bootstrap:
 
 go-bootstrap:
 	glide install
+	go get github.com/githubnemo/CompileDaemon
 	go get github.com/jteeuwen/go-bindata/...
 	go get github.com/elazarl/go-bindata-assetfs/...
 
@@ -27,21 +30,26 @@ bower-bootstrap:
 bindata-assetfs-clean:
 	rm -f $(makefile_dir)/bindata_assetfs.go
 
-bindata-assetfs:
-	go-bindata-assetfs html/
-
 bindata-clean:
-	rm -f $(makefile_dir)/bindata.go
+	rm -f $(go_assetfile)
 
-bindata:
-	go-bindata html/
+echo-build:
+	go generate
+	go build
 
 echo-debug:
-	go-bindata-assetfs -debug -ignore=\\.gitignore view/... static/...
-	go build
+	make echo-build
 	$(makefile_dir)/echo
 
 echo-run:
 	go generate
 	go build
 	$(makefile_dir)/echo
+
+echo-refresh:
+	CompileDaemon \
+		-build="make echo-build" \
+		-command $(makefile_dir)/echo \
+		-directory=$(makefile_dir) -color \
+		-exclude-dir=.git -exclude-dir=.idea -exclude-dir=static -exclude-dir=vendor \
+		-exclude=bindata_assetfs.go -exclude=bindata.go -exclude=echo

@@ -5,7 +5,6 @@ package main
 //
 // https://github.com/Sirupsen/logrus
 //
-//
 
 //go:generate go-bindata-assetfs -ignore=\\.gitignore view/... static/...
 
