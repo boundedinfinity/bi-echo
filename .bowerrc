@@ -1,4 +1,4 @@
 {
-    "directory": "src/github.com/boundedinfinity/echo/static/bower_components",
+    "directory": "static/bower_components",
     "analytics": false
 }

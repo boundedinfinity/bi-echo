@@ -1,0 +1,5 @@
+package: github.com/boundedinfinity/echo
+ignore:
+- github.com/boundedinfinity/echo
+import:
+- package: github.com/gorilla/websocket
