@@ -52,6 +52,9 @@ go-purge:
 	rm -rf $(makefile_dir)/vendor
 	rm -rf $(makefile_dir)/glide.lock
 
+serve:
+	cd $(makefile_dir)/static && python -m SimpleHTTPServer
+
 bower-bootstrap:
 	bower install
 
